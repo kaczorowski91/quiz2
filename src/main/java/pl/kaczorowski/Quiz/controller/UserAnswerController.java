@@ -42,7 +42,7 @@ public class UserAnswerController {
         Type userAnswer = new TypeToken<ArrayList<UserAnswerDto>>(){}.getType();
         ArrayList<UserAnswerDto> userAnswerDtos=gson.fromJson(answerDtoList.toString(), userAnswer);
 
-        return "Odpowiedz pobrana";
+        return "Odpowiedz pobrandsadsadsadsaa";
     }
 
 }
