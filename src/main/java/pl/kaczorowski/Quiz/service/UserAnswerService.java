@@ -3,10 +3,12 @@ package pl.kaczorowski.Quiz.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.kaczorowski.Quiz.dto.UserAnswerDto;
+import pl.kaczorowski.Quiz.entity.Question;
 import pl.kaczorowski.Quiz.entity.UserAnswer;
 import pl.kaczorowski.Quiz.mapper.UserAnswerMapper;
-import pl.kaczorowski.Quiz.repository.UserAnswerRepository;
+import pl.kaczorowski.Quiz.repository.QuestionRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,21 +16,33 @@ import java.util.List;
 public class UserAnswerService {
 
     private UserAnswerMapper userAnswerMapper;
-    private UserAnswerRepository userAnswerRepository;
+    private QuestionRepository questionRepository;
 
-    public UserAnswerDto saveAnswer(UserAnswerDto userAnswerDto) {
+    public boolean checkAnswer(UserAnswerDto userAnswerDto) {
+
         UserAnswer userAnswer = userAnswerMapper.mapToUserAnswer(userAnswerDto);
-        userAnswerRepository.save(userAnswer);
-        System.out.println(userAnswer);
-        return userAnswerDto;
+        List<Boolean> userAnswersList = userAnswer.getAnswers();
+
+        Question question = questionRepository.findByQuestionNumber(userAnswer.getQuestionNumber());
+        List<Boolean> correctAnswer = question.getAnswers();
+
+        for (int i = 0; i < correctAnswer.size(); i++) {
+
+            boolean line = correctAnswer.get(i).equals(userAnswersList.get(i));
+            if (!line) {
+                System.out.println(question.getQuestionNumber() + "false");
+                return false;
+            }
+        }
+        System.out.println(question.getQuestionNumber() + "true");
+        return true;
     }
-    public String saveAnswers(UserAnswerDto userAnswerDto) {
-        UserAnswer userAnswer = userAnswerMapper.mapToUserAnswer(userAnswerDto);
-        userAnswerRepository.save(userAnswer);
-        System.out.println(userAnswer);
-        return "UDAlo sie";
+
+    public void checkAnswerList(ArrayList<UserAnswerDto> userAnswerDtos) {
+
+        for (int i = 0; i < userAnswerDtos.size(); i++) {
+            UserAnswerDto userAnswerDto = userAnswerDtos.get(i);
+            checkAnswer(userAnswerDto);
+        }
     }
-
-
-
 }

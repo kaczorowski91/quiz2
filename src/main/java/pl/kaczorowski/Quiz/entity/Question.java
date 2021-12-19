@@ -2,10 +2,9 @@ package pl.kaczorowski.Quiz.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -28,9 +27,10 @@ public class Question {
     private String answer7;
     private String answer8;
     private String answer9;
-    private Boolean[] answers;
+    @ElementCollection
+    private List<Boolean> answers = new ArrayList<>();
 
-    public Question(String questionNumber, String question, String answer1, String answer2, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -38,7 +38,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -47,7 +47,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -57,7 +57,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -68,7 +68,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -80,7 +80,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -93,7 +93,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, String answer8, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, String answer8, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
@@ -107,7 +107,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, String answer8, String answer9, Boolean[] answers) {
+    public Question(String questionNumber, String question, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, String answer8, String answer9, List<Boolean> answers) {
         this.questionNumber = questionNumber;
         this.question = question;
         this.answer1 = answer1;
