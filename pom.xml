@@ -5,6 +5,18 @@
 
     <groupId>pl.kaczorowski</groupId>
     <packaging>pom</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <artifactId>Quiz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Quiz</name>
@@ -57,8 +69,10 @@
             <artifactId>gson</artifactId>
             <version>2.8.9</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
-
-
 </project>

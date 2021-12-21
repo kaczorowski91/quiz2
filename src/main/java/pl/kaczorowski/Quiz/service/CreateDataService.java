@@ -1,5 +1,9 @@
 package pl.kaczorowski.Quiz.service;
 
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -7,7 +11,11 @@ import org.springframework.stereotype.Service;
 import pl.kaczorowski.Quiz.entity.Question;
 import pl.kaczorowski.Quiz.repository.QuestionRepository;
 
+import java.io.*;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -16,38 +24,48 @@ public class CreateDataService {
     private QuestionRepository questionRepository;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void addData() {
+    public void readCSV() throws FileNotFoundException {
+        try {
+            FileReader filereader = new FileReader("src/main/resources/question.csv");
+            CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
+            CSVReader csvReader = new CSVReaderBuilder(filereader)
+                    .withCSVParser(parser)
+                    .build();
+            List<String[]> allData = csvReader.readAll();
 
-        Question question1 = new Question("1.1", "Jakich wymiarów jest, według przepisów, boisko do gry?",
-                "40x20 metrów", "42x20 metrów", "38x18 metrów", "Długość pomiędzy 38 a 42 m, szerokość pomiędzy 18 a 22 metry",
-                Arrays.asList(true,false,false,false));
+            for (String[] row : allData) {
+                String number = row[0];
+                String question = row[1];
+                String answer1 = row[2];
+                String answer2 = row[3];
+                String answer3 = row[4];
+                String answer4 = row[5];
+                String answer5 = row[6];
+                String answer6 = row[7];
+                String answer7 = row[8];
+                String answer8 = row[9];
+                String answer9 = row[10];
+                Boolean answer1_boolean = Boolean.valueOf(row[11]);
+                Boolean answer2_boolean = Boolean.parseBoolean(row[12]);
+                Boolean answer3_boolean = Boolean.parseBoolean(row[13]);
+                Boolean answer4_boolean = Boolean.parseBoolean(row[14]);
+                Boolean answer5_boolean = Boolean.parseBoolean(row[15]);
+                Boolean answer6_boolean = Boolean.parseBoolean(row[16]);
+                Boolean answer7_boolean = Boolean.parseBoolean(row[17]);
+                Boolean answer8_boolean = Boolean.parseBoolean(row[18]);
+                Boolean answer9_boolean = Boolean.parseBoolean(row[19]);
 
-        Question question2 = new Question("1.2", "Jakie są wymagane wymiary w świetle bramki?",
-                "1.92 x 2.92 m",
-                "2.00 x 3.00 m",
-                "2.05 x 3.05 m",
-                "2.08 x 3.08 m",
-                Arrays.asList(false, true, false, false));
+                List<Boolean> answers = Arrays.asList(answer1_boolean, answer2_boolean, answer3_boolean, answer4_boolean, answer5_boolean,
+                        answer6_boolean, answer7_boolean, answer8_boolean, answer9_boolean);
 
-        Question question3 = new Question("1.3", "Jak szeroka jest linia bramkowa pomiędzy słupkami??",
-                "5 cm",
-                "6 cm",
-                "8 cm",
-                "10 cm",
-                Arrays.asList(false, false, true, false));
+                questionRepository.save(new Question(number, question, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answers));
 
-        Question question4 = new Question("2.19", "Kto NIE jest uprawniony do wykonywania rzutów karnych, w sytuacji, kiedy mecz jest nierozstrzygnięty po zakończeniu dogrywek?",
-                "Zawodnik, który ubliża sędziom krótko po zakończeniu dogrywki",
-                "Bramkarze",
-                "Zawodnik, którego 2-minutowe wykluczenie nie zakończyło się przed końcem dogrywki",
-                "Zawodnik zdyskwalifikowany",
-                "Zawodnik, któremu została udzielona pomoc medyczna na boisku, ale jego drużyna nie przeprowadziła ataków przed zakończeniem dogrywki",
-                Arrays.asList(true, false, true, true, false));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        questionRepository.save(question1);
-        questionRepository.save(question2);
-        questionRepository.save(question3);
-        questionRepository.save(question4);
     }
+
 
 }
