@@ -39,12 +39,33 @@ public class CreateDataService {
                 String answer1 = row[2];
                 String answer2 = row[3];
                 String answer3 = row[4];
+                if (answer3.equals("")) {
+                    answer3 = null;
+                }
                 String answer4 = row[5];
+                if (answer4.equals("")) {
+                    answer4 = null;
+                }
                 String answer5 = row[6];
+                if (answer5.equals("")) {
+                    answer5 = null;
+                }
                 String answer6 = row[7];
+                if (answer6.equals("")) {
+                    answer6 = null;
+                }
                 String answer7 = row[8];
+                if (answer7.equals("")) {
+                    answer7 = null;
+                }
                 String answer8 = row[9];
+                if (answer8.equals("")) {
+                    answer8 = null;
+                }
                 String answer9 = row[10];
+                if (answer9.equals("")) {
+                    answer9 = null;
+                }
                 Boolean answer1_boolean = Boolean.valueOf(row[11]);
                 Boolean answer2_boolean = Boolean.parseBoolean(row[12]);
                 Boolean answer3_boolean = Boolean.parseBoolean(row[13]);
@@ -64,8 +85,5 @@ public class CreateDataService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

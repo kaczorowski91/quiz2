@@ -30,19 +30,31 @@ public class UserAnswerService {
 
             boolean line = correctAnswer.get(i).equals(userAnswersList.get(i));
             if (!line) {
-                System.out.println(question.getQuestionNumber() + "false");
+                System.out.println(question.getQuestionNumber() + " false");
                 return false;
             }
         }
-        System.out.println(question.getQuestionNumber() + "true");
+        System.out.println(question.getQuestionNumber() + " true");
         return true;
     }
 
-    public void checkAnswerList(ArrayList<UserAnswerDto> userAnswerDtos) {
+    public String checkAnswerList(ArrayList<UserAnswerDto> userAnswerDtos) {
+
+        StringBuilder result = new StringBuilder();
+        int count = 0;
 
         for (int i = 0; i < userAnswerDtos.size(); i++) {
             UserAnswerDto userAnswerDto = userAnswerDtos.get(i);
-            checkAnswer(userAnswerDto);
+            result.append("Pytanie nr. " +userAnswerDto.getQuestionNumber() + " Odpowiedz: ");
+
+            if(checkAnswer(userAnswerDto)){
+                result.append("prawidłowa. ");
+                count++;
+            }else {
+                result.append("nieprawidłowa. ");
+            }
         }
+        result.append( "Uzyskany wynik to: " + count);
+        return result.toString();
     }
 }

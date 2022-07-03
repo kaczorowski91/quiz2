@@ -18,4 +18,9 @@ public class QuestionController {
         return questionService.getQuestions();
     }
 
+/*    @GetMapping
+    public QuestionDto getQuestion() {
+        return questionService.getQuestion();
+    }*/
+
 }

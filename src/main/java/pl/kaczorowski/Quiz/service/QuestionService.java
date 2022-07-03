@@ -16,7 +16,7 @@ public class QuestionService {
     private QuestionMapper questionMapper;
 
     public List<QuestionDto> getQuestions() {
+        System.out.println(questionRepository.findAll().size());
         return questionMapper.mapToQuestionDtoList(questionRepository.findAll());
     }
-
 }
