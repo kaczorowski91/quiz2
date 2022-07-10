@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* /pl/kaczorowski/Quiz/QuizApplication
+web: java -jar target/classes/pl/kaczorowski/Quiz/QuizApplication
