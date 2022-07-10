@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* heroku.QuizApplication
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* pl/kaczorowski/Quiz.QuizApplication
