@@ -11,6 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Getter
+@Data
+@Table(name= " \"Question\"")
 public class Question {
 
     @Id
