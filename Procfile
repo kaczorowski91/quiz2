@@ -1,1 +1,0 @@
-web: java -jar target/classes/pl/kaczorowski/Quiz/QuizApplication
