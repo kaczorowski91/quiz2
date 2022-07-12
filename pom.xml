@@ -4,7 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.kaczorowski</groupId>
-    <packaging>pom</packaging>
+<!--    <packaging>pom</packaging>-->
+    <packaging>jar</packaging>
     <build>
         <plugins>
             <plugin>
@@ -46,13 +47,21 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <start-class>pl.kaczorowski.Quiz.QuizApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-parent</artifactId>
-            <version>2.6.1</version>
+            <version>2.6.6</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
