@@ -1,4 +1,4 @@
-package pl.kaczorowski.Quiz.configuration;
+package pl.kaczorowski.Quiz;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
