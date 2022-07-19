@@ -26,7 +26,6 @@ public class UserAnswerController {
         Gson gson = new Gson();
         Type userAnswer = new TypeToken<ArrayList<UserAnswerDto>>() {}.getType();
         ArrayList<UserAnswerDto> userAnswerDtos = gson.fromJson(answerDtoList.toString(), userAnswer);
-
         return userAnswerService.checkAnswerList(userAnswerDtos);
     }
 
