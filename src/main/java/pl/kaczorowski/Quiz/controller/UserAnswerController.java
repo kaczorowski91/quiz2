@@ -20,7 +20,7 @@ public class UserAnswerController {
     private UserAnswerService userAnswerService;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping( produces = "application/json", method = RequestMethod.POST)
+    @PostMapping
     public String getAnswer(@RequestBody Object answerDtoList) {
 
         Gson gson = new Gson();
